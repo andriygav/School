@@ -15,6 +15,9 @@ public:
 // Объявляем конструктор класса
 	myList();
 
+// Объявляем деструктор класса
+	~myList();
+
 // Данная функция возвращает длину списка
 	size_t len();
 
@@ -41,6 +44,8 @@ public:
 // если index >= this->length, то возвращает последний элемент
 	int pop(size_t index);
 
+	int& get(size_t index);
+
 // Данная функция возвращает первое вхождения data в список
 // возвращает this->length, если такого нету
 	size_t index(int data);
@@ -49,12 +54,16 @@ public:
 	void remove(int data);
 
 // Определим оператор плюс для списка, как объединение двух списков
-	myList operator+(myList& List);
+	myList& operator+(myList& List);
 
 // Определим оператор плюс между списоком и числом
-	myList operator+(int data);
+	myList& operator+(int data);
 
-// Определим оператор [], чтобы со спииском можно было бы работать как с массивом
+// Определим оператор [], чтобы со списком можно было бы работать как с массивом
 	int& operator[](size_t index);
+	// int operator[](size_t index);
+
+// Определим оператор присваивания
+	// myList operator=(myList)
 
 };

@@ -5,6 +5,10 @@ myList::myList(){
 	this->length = 0;
 }
 
+myList::~myList(){
+	this->clear();
+}
+
 size_t myList::len(){
 	return this->length;
 }
@@ -47,6 +51,7 @@ void myList::clear(){
 		temp = temp->next;
 		free(temp2);
 	}
+	this->head = NULL;
 	this->length = 0;
 }
 
@@ -132,13 +137,14 @@ void myList::reverse(){
 }
 
 void myList::print(){
+	std::cout<<'[';
 	struct node* temp = this->head;
 
 	while(temp != NULL){
 		std::cout<<temp->data<<" ";
 		temp = temp->next;
 	}
-	std::cout<<std::endl;
+	std::cout<<']'<<std::endl;
 }
 
 
@@ -188,6 +194,30 @@ int myList::pop(size_t index){
 	return data;
 }
 
+static int ret = 0;
+
+int& myList::get(size_t index){
+
+	if(this->length == 0){
+		return ret;
+	}
+
+	if(index == 0){
+		return this->head->data;
+	}else{
+		struct node* temp = this->head;
+
+		for(int i=0; i < index; i++){
+			if(temp->next != NULL){
+				temp = temp->next;
+			}
+		}
+		return temp->data;
+	}
+
+	return ret;
+}
+
 size_t myList::index(int data){
 	size_t index = 0;
 
@@ -215,26 +245,24 @@ void myList::remove(int data){
 	}
 }
 
-myList myList::operator+(myList& List){
+myList& myList::operator+(myList& List){
 	size_t len = List.len();
 
-	for(size_t i=0; i<len; i++){
+	for(size_t i = 0; i < len; i++){
 		this->append(List[i]);
 	}
 
 	return *this;
 }
 
-myList myList::operator+(int data){
+myList& myList::operator+(int data){
 	this->append(data);
-
 	return *this;
 }
 
+// static int data;
 int& myList::operator[](size_t index){
-	static int data = this->pop(index);
-	this->insert(data, index);
-	return data;
+	return this->get(index);
 }
 
 
