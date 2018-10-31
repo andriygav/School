@@ -1,4 +1,6 @@
 #include "myList.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 myList::myList(){
 	this->head = NULL;
@@ -152,6 +154,7 @@ int myList::pop(size_t index){
 	int data = 0;
 
 	if(this->length == 0){
+		this->head = NULL;
 		return data;
 	}
 
@@ -159,7 +162,9 @@ int myList::pop(size_t index){
 		data = this->head->data;
 		struct node* temp = this->head;
 		this->head = temp->next;
-		this->head->previous = NULL;
+		if(this->head != NULL){
+			this->head->previous = NULL;
+		}
 		free(temp);
 		this->length--;
 	}else{
@@ -189,6 +194,10 @@ int myList::pop(size_t index){
 			next->previous = previous;
 		}
 
+	}
+
+	if(this->length == 0){
+		this->head = NULL;
 	}
 
 	return data;
