@@ -1,0 +1,45 @@
+\documentclass[12pt, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\newcommand{\hdir}{.}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{euscript}
+\usepackage{upgreek}
+\usepackage{array}
+\usepackage{theorem}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO,CE]{Лекция 8}
+\fancyhead[LO,LE]{Грабовой Андрей}
+
+\begin{document} 
+
+\begin{center}
+{\LARGE\bf
+Краска, один из рекурсивных алгоритмов
+}
+\end{center}
+
+\section{Задача Castle}
+
+\paragraph{Условие задачи.} Древний замок имеет прямоугольную форму. Замок имеет как минимум две комнаты. Пол замка можно условно поделить на $M\times N$ клеток. Каждая клетка содержит $0$ либо $1$, который задают пол и стену замку соответственно. Напишите программу, которая находит площадь наибольшей комнаты, которую можно получить при помощи удалении одной стены, то есть заменив только одну $1$ на $0$. Удалять внешние стены запрещено.
+\paragraph{Технические условия.} Программа Castle считывает с устройства стандартного ввода <<план замка>>. В первой строчке имеется число $M$, во второй строке целое число $N$ --- коиличество строк и количество столбцов. $M$ следующих строк содержит по $N$  нулей либо единиц, которые идут подряд, то есть без пробелов. Первый и последний столбец, а также первый и последний столбик это внешние стены и состоят только из единиц. Программа выводит на устройство площадь максимальной комнаты, которая получится, при удалении внутренней стены.
+
+
+
+\end{document} 
