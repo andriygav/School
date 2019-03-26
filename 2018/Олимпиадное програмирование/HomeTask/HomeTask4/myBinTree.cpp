@@ -1,37 +1,36 @@
-#include "myTree.h"
+#include "myBinTree.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-myTree::myTree(){
+myBinTree::myBinTree(){
 	// Ваш код тут
 }
 
-myTree::~myTree(){
+myBinTree::~myBinTree(){
 	// Ваш код тут
 }
 
-void myList::append(int data){
+void myBinTree::append(int data, int key){
 	// Ваш код тут
 }
 
-size_t myTree::len(){
+size_t myBinTree::len(){
 	return this->length;
 }
 
-void myList::clear(){
+void myBinTree::clear(){
 	// Ваш код тут
 }
 
-size_t myList::count(int data){
+void myBinTree::print(){
 	// Ваш код тут
 }
 
-myTree& myTree::operator+(myTree& List){
+size_t myBinTree::get(int key){
 	// Ваш код тут
 }
 
-myTree& myList::operator+(int data){
+int myBinTree::operator[](int key){
 	// Ваш код тут
 }
-
 
