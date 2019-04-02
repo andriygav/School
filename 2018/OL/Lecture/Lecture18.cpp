@@ -10,7 +10,7 @@
 // 		E --- масив значений графа на вершинах размера [n]
 // return:
 // 		flag --- 0 если граф не дерево и 1 если дерево
-int is_tree(int** V, int* E){
+int is_tree(int V[MAX_NUM_V][2], int E[MAX_NUM_E]){
 	int flag = 0;
 
 	//Ваш код здесь
@@ -24,7 +24,7 @@ int is_tree(int** V, int* E){
 // 		E --- масив значений дерева на вершинах размера [n]
 // return:
 // 		height --- высота дерева
-int tree_height(int** V, int* E){
+int tree_height(int V[MAX_NUM_V][2], int E[MAX_NUM_E]){
 	int height = 0;
 
 	//Ваш код здесь
@@ -54,12 +54,12 @@ int main(){
 
 	scanf("%d%d", &n, &m);
 
-	for(int i = 0; i < n, i++){
+	for(int i = 0; i < n; i++){
 		scanf("%d", &E[i]);
 	}
 
-	for(int i = 0; i < m, i++){
-		scanf("%d%d", V[i][0], V[i][1]);
+	for(int i = 0; i < m; i++){
+		scanf("%d%d", &V[i][0], &V[i][1]);
 	}
 
 	int flag = is_tree(V, E);
@@ -69,9 +69,9 @@ int main(){
 	}
 
 	if(flag){
-		printf("This graph is tree\n. It's height is %d", height);
+		printf("This graph is tree.\n It's height is %d.\n", height);
 	}else{
-		printf("This graph is not tree\n.");
+		printf("This graph is not tree.\n");
 	}
 
 	return 0;
