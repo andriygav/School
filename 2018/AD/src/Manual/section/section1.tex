@@ -1,0 +1,177 @@
+\section{Матрицы. Работа с матрицами в python.}
+
+\subsection{Действительные чисела}
+Для начала нужно вспомнить, что такое действительные числа и как мы можем с ними работать.
+\paragraph{Аксиомы} для действительных чисел:
+\begin{itemize}
+	\item $\forall a,b \in \mathbb{R}\rightarrow~a+b=b+a$ --- аксиома коммутативности сложениия,
+	\item $\forall a,b,c \in \mathbb{R}\rightarrow~a+(b+c)=(a+b)+c$ --- аксиома ассоциативности сложениия,
+	\item $\exists 0 \in \mathbb{R}:~\forall a \in \mathbb{R}\rightarrow~a+0=0+a=a$ --- аксиома существование нулевого элемента,
+	\item $\forall a \in \mathbb{R}~\exists(-a)\in\mathbb{R}:~a+(-a)=0$ --- аксиома существования противоположного элемента,
+	
+	\item $\forall a,b \in \mathbb{R}\rightarrow~a\cdot b=b\cdot a$ --- аксиома коммутативности умножения,
+	\item $\forall a,b,c \in \mathbb{R}\rightarrow~a\cdot(b\cdot c)=(a\cdot b)\cdot c$ --- аксиома ассоциативности умножения,
+	\item $\exists 1 \in \mathbb{R}:~\forall a \in \mathbb{R}\rightarrow~a\cdot1=1\cdot a=a$ --- аксиома существование единичного элемента,
+	\item $\forall a \in \mathbb{R}, a\not=0~\exists\frac{1}{a}\in\mathbb{R}:~a\cdot\frac{1}{a}=1$ --- аксиома существования обратного элемента,
+	
+	\item $\forall a,b,c \in \mathbb{R} \rightarrow~ (a+b)\cdot c = a\cdot c + b\cdot c$ --- дистрибутивность умножения относительно сложения.
+\end{itemize}
+
+\subsection{Матрицы}
+
+\paragraph{Рассмотрим} следующую систему линейных уравнений:
+
+\begin{equation*}
+\begin{cases}
+x_1 + 2x_2 + 3x_3  & = 6
+\\
+-x_1 - 2x_2 + 3x_3  & = 0
+\\
+-x_1 + 3x_2 + x_3  & = 3
+\end{cases},
+\eqno(1)
+\end{equation*}
+В системе (1) нужно найти $x_1,~x_2,~x_3$.\\
+Обозначим 
+$\textbf{x} = \begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+\end{bmatrix}$ --- назовем этот вектор как вектор решения системы (1), 
+$\textbf{b} = \begin{bmatrix}
+6\\
+0\\
+3\\
+\end{bmatrix}$ --- вектор правой части уравнения (1).\\
+Теперь нужно как-то обозначить коэффициенты при $x_1,~x_2,~x_3$ в системе (1). Занесем их в некоторую <<таблицу>> 
+$\textbf{A} = \begin{bmatrix}
+1&2&3\\
+-1&-2&3\\
+-1&3&1\\
+\end{bmatrix}$
+
+Утверждается, что систему (1), можно записать в виде:
+$$\textbf{A}\cdot\textbf{x} = \textbf{b}. \eqno(2)$$
+
+Но, с чем у нас проблемы тогда? А с тем, как именно определяется операция умножения <<таблицы>> на вектор.
+\paragraph{<<Определение>>} <<Таблица>> с определенной на ней операциями сложения и умножения называется матрица.
+
+Пока мы дали не очень строгое определение матрицы, но главное, что нужно понять с него, это то, что матрица это некоторая таблица размера $n\times m,$ где $n,m\in \mathbb{N}$ (что значит, что в матрице $n$ строк и $m$ столбцов).
+
+Размер матрицы будем обозначать индексами снизу, то есть запись $\textbf{A}_{n\times m}$ означает, что в матрице $\textbf{A}$ $n$ строк и $m$ столбцов.
+
+\paragraph{Сложения} двух матриц. Пусть заданы матрицы $\textbf{A}_{n\times m}$ и $\textbf{B}_{n\times m}$. Тогда матрицей $\textbf{C} = \textbf{A}+\textbf{B}$ называется суммой матриц  $\textbf{A}$ и $\textbf{B}$ задаваемая уравнением (3).
+$$
+\textbf{A}_{n\times m}= \begin{bmatrix}
+a_{11} & a_{12} & \cdots& a_{1m}\\
+a_{21} & a_{22} & \cdots& a_{2m}\\
+\cdots& \cdots & \cdots& \cdots\\
+a_{n1} & a_{n2} & \cdots& a_{nm}\\
+\end{bmatrix}, \quad 
+\textbf{B}_{n\times m}= \begin{bmatrix}
+b_{11} & b_{12} & \cdots& b_{1m}\\
+b_{21} & b_{22} & \cdots& b_{2m}\\
+\cdots& \cdots & \cdots& \cdots\\
+b_{n1} & b_{n2} & \cdots& b_{nm}\\
+\end{bmatrix}$$
+$$
+\textbf{C}_{n\times m}= \begin{bmatrix}
+a_{11}+b_{11} & a_{12}+b_{12}& \cdots& a_{1m}+b_{1m}\\
+a_{21}+b_{21} & a_{22}+b_{22} & \cdots& a_{2m}+b_{2m}\\
+\cdots& \cdots & \cdots& \cdots\\
+a_{n1}+b_{n1} & a_{n2}+b_{n2}  & \cdots& a_{nm}+b_{nm}\\
+\end{bmatrix}. \eqno(3)
+$$
+Как видно из уравнения (3) сумма двух матриц это просто поэлементная сумма. Важно заметить, что размеры матрицы $\textbf{A}$ и $\textbf{B}$ должны быть равны.
+
+\paragraph{Умножения} двух матриц. Пусть заданы матрицы $\textbf{A}_{n\times k}$ и $\textbf{B}_{k\times m}$. Тогда результатом умножения двух матриц является матрица $\textbf{D}_{n\times m} =\textbf{A}_{n\times k}\cdot\textbf{B}_{k\times m}$, которая задается уравнением (4).
+$$
+\textbf{A}_{n\times k}= \begin{bmatrix}
+a_{11} & a_{12} & \cdots& a_{1k}\\
+a_{21} & a_{22} & \cdots& a_{2k}\\
+\cdots& \cdots & \cdots& \cdots\\
+a_{n1} & a_{n2} & \cdots& a_{nk}\\
+\end{bmatrix}, \quad 
+\textbf{B}_{k\times m}= \begin{bmatrix}
+b_{11} & b_{12} & \cdots& b_{1m}\\
+b_{21} & b_{22} & \cdots& b_{2m}\\
+\cdots& \cdots & \cdots& \cdots\\
+b_{k1} & b_{k2} & \cdots& b_{km}\\
+\end{bmatrix}$$
+$$
+\textbf{D}_{n\times m}= \begin{bmatrix}
+\sum_{j=1}^{k} a_{1j}b_{j1}& \sum_{j=1}^{k} a_{1j}b_{j2}& \cdots& \sum_{j=1}^{k} a_{1j}b_{jm}\\
+\sum_{j=1}^{k} a_{2j}b_{j1}& \sum_{j=1}^{k} a_{2j}b_{j2}& \cdots& \sum_{j=1}^{k} a_{2j}b_{jm}\\
+\cdots& \cdots & \cdots& \cdots\\
+\sum_{j=1}^{k} a_{nj}b_{j1}& \sum_{j=1}^{k} a_{nj}b_{j2}& \cdots& \sum_{j=1}^{k} a_{nj}b_{jm}\\
+\end{bmatrix}. \eqno(4)
+$$
+
+Как видно из уравнения (4) каждый элемент матрицы $\textbf{D}_{n\times m}$ это скалярное произведения соответсвующие скалярные произведения строки матрицы $\textbf{A}_{n\times k}$ на столбец матрицы $\textbf{B}_{k\times m}$. Важно обратить внимания на размерности матриц. Количество столбцов в первой матрице должно соответствовать количеству строк второй матрицы.
+
+Обозначение: 
+$$\textbf{0}_{n\times n} = \begin{bmatrix}
+0 & 0 & \cdots & 0\\
+0 & 0 & \cdots & 0\\
+\cdots & \cdots & \cdots & \cdots\\
+0 & 0 & \cdots & 0\\
+\end{bmatrix}
+\qquad
+\textbf{E}_{n} = \textbf{1}_{n\times n} = \begin{bmatrix}
+1 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\cdots & \cdots & \cdots & \cdots\\
+0 & 0 & \cdots & 1\\
+\end{bmatrix}$$
+
+\paragraph{Аксиомы} для операций над матрицами:
+\begin{itemize}
+	\item $\forall \textbf{A}_{n\times m}, \textbf{B}_{n\times m} \rightarrow~\textbf{A}_{n\times m}+\textbf{B}_{n\times m}=\textbf{B}_{n\times m}+\textbf{A}_{n\times m}$ --- аксиома коммутативности сложениия,
+	
+	\item $\forall \textbf{A}_{n\times m}, \textbf{B}_{n\times m}, \textbf{C}_{n\times m} \rightarrow~\textbf{A}_{n\times m}+(\textbf{B}_{n\times m}+\textbf{C}_{n\times m})=(\textbf{A}_{n\times m}+\textbf{B}_{n\times m})+\textbf{C}_{n\times m}$ --- аксиома ассоциатиивности сложениия,
+	
+	\item $\exists \textbf{0}_{n\times m}: \forall \textbf{A}_{n\times m} \rightarrow~\textbf{0}+\textbf{A} = \textbf{A}$ --- аксиома существование нулевого элемента,
+	
+	\item $\forall \textbf{A}_{n\times m} \exists (-\textbf{A}_{n\times m}): \textbf{A} + (-\textbf{A}) = \textbf{0}$ --- аксиома существования протиивоположного элемента,
+	
+	
+	\item $\forall \textbf{A}_{n\times k}, \textbf{B}_{k\times m}, \textbf{C}_{m\times p} \rightarrow~\textbf{A}(\textbf{B}\textbf{C}) = (\textbf{A}\textbf{B})\textbf{C}$ --- аксиома ассоциатиивности умножения
+	
+	\item $\exists \textbf{E}_{n}: \forall \textbf{A}_{n\times n} \rightarrow~\textbf{E}\cdot\textbf{A} = \textbf{A}\cdot\textbf{E} = \textbf{A}$ --- аксиома существование единичного элемента,
+	
+	\item $\forall \textbf{A}_{n\times k}, \textbf{B}_{n\times k}, \textbf{C}_{k\times m} \rightarrow~ (\textbf{A} +\textbf{B})\textbf{C} = \textbf{A}\textbf{C} + \textbf{B}\textbf{C}$ --- дистрибутивность умножения относительно сложения.
+\end{itemize}
+
+Как можно заметить количество {\bfаксиом} по сравнению с количеством {\bfаксиом} для действительных чисел уменьшилось на $\textbf{2}$. Для матриц не выполняется аксиома коммутативности умножения и существования обратного элемента (обратный элемент, если он существует обозначается $\textbf{A}^{-1}$). Обратный элемент существует, только для квадратных матриц.
+
+
+
+\subsection{Решение системы линейных уравнений}
+Рассматривается случай, когда $\textbf{A}_{n\times m}$ --- квадратная, тоесть случай, когда $n=m$.
+Будем предполагать, что для $\textbf{A}$ существует обратная матрица.
+Вернемся к нашему уравнению (2):
+
+$$\textbf{A}_{n\times n}\cdot\textbf{x}_{n\times 1} = \textbf{b}_{n\times 1}. \eqno(5)$$
+
+Теперь зная, как умножаются матрицы мы можем попытаться решить это уравнение. Заметим, что вектор это частный случай матрицы при  количестве столбцов равном $1$.
+
+Как бы вы решали это уравнение, если бы $\textbf{A}$ было бы просто числом? Просто поделили на $\textbf{A}$ слева и справа? Другими словами вы бы умножили на обратный элемент к $\textbf{A}$ и по аксиоме об обратном получили бы результат.
+
+Проделаем тоже самое для матриц:
+
+$$\textbf{A}_{n\times n}\cdot\textbf{x}_{n\times 1} = \textbf{b}_{n\times 1}$$
+$$\textbf{A}_{n\times n}^{-1}\textbf{A}_{n\times n}\cdot\textbf{x}_{n\times 1} =\textbf{A}_{n\times n}^{-1} \textbf{b}_{n\times 1}$$
+
+$$\textbf{E}_{n}\cdot\textbf{x}_{n\times 1} =\textbf{A}_{n\times n}^{-1} \textbf{b}_{n\times 1}$$
+$$\textbf{x}_{n\times 1} =\textbf{A}_{n\times n}^{-1} \textbf{b}_{n\times 1}, \eqno(6)$$
+
+И так получаем, что решение уравнения (1) задается уравнением (6), если решение существует.
+
+\subsection{Еще раз важные замечания}
+
+При работе с матрицами всегда нужно смотреть за размерностями самих матриц. Нужно всегда контролировать которая матрица умножается справа, а какая слева, так-как для матричного умножения не выполняется аксиома коммутативности. Также стоит помнить, что обратный элемент матрицы существует не всегда.
+
+
+
+
+
