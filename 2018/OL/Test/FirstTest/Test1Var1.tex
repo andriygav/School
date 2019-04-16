@@ -1,0 +1,99 @@
+\documentclass[12pt, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\newcommand{\hdir}{.}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{euscript}
+\usepackage{upgreek}
+\usepackage{array}
+\usepackage{theorem}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{verbatim}
+
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO,CE]{Контрольная работа 1-1}
+\fancyhead[LO,LE]{ФИО }
+
+\begin{document} 
+\section{Задача}
+Для каждого выделения памяти в программе опишите где именно оно произошло и сколько памяти было выделено.
+
+\begin{verbatim}
+#include <iostream>
+const int size = 10;
+double* a;
+
+int f(std::string& s, int n){
+    if( n > 40 ) return n;
+    a = new double[size];
+    return f(s, 3*s.size());
+}
+
+int main(){
+    	std::string b;
+    	// вводится abcd
+    	cin >> b;
+    	f(b, 0);
+    	return 0;
+}
+
+\end{verbatim}
+\section{Задача}
+Найти затрачиваиваемую память в терминах $M(n)$.
+\begin{verbatim}
+int function(int n){
+    if( n == 0 ) {
+        return 0;
+    }
+    double* tmp_arr = new int[n];
+    int val = function(n / 3);
+    for(int i = 0; i < n; ++i){
+        tmp_arr[i] = (val - i) * (val - i);
+    }
+    print_arr(tmp_arr); // не тратит память
+    delete tmp_arr;
+    return sqrt(tmp_arr[n-1]);
+}
+\end{verbatim}
+\section{Задача}
+Доказать, что вставка элемента в вектор работает <<армортизированно>> за $O(1)$.
+
+\newpage
+\section{Задача}
+Допишите классы так, чтобы данный код компилировался.
+\begin{verbatim}
+#include <iostream>
+
+int main(){
+    B obj1, obj2(12.3);
+    obj1.add(obj2);
+    double value = obj2.toDouble();
+
+    Point first(obj1.toDouble(), 0), q(‘Q’);
+    q.setX(-13.4);
+    q.setY(12.5);
+    first.setName(‘B’);
+
+    	std::cout << “ Point “ << q.name 
+    	std::cout << “ is at (“ << q.x << “ , “ << q.y << “) \n”; 
+    	std::cout << “ Point “ << first.name;
+    	std::cout << “ is at (“ << first.x << “ , “ << fist.y << “)\n”;
+}
+
+\end{verbatim}
+\end{document} 

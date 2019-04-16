@@ -1,0 +1,108 @@
+\documentclass[12pt, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\newcommand{\hdir}{.}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{euscript}
+\usepackage{upgreek}
+\usepackage{array}
+\usepackage{theorem}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{verbatim}
+
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[CO,CE]{Контрольная работа 1-2}
+\fancyhead[LO,LE]{ФИО }
+
+\begin{document} 
+\section{Задача}
+Для каждого выделения памяти в программе опишите где именно оно произошло и сколько памяти было выделено.
+
+\begin{verbatim}
+#include <iostream>
+#include <string.h>
+
+const int number = 12;
+
+int function(const char* str){
+    printf("%s\n", str);
+    if(strlen(str) > 0){
+        function(str+1);
+    }
+    return 0;
+}
+
+int main(){
+    char a[number];
+    // вводиться Hello World
+    scanf("%s", a);
+    function(a);
+    return 0;
+}
+\end{verbatim}
+\section{Задача}
+Найти время работы следующей функции в терминах $T(n, m)$.
+\begin{verbatim}
+int function(int n, int m){
+    return function((n+m)/2, (n+m)/4)
+}
+\end{verbatim}
+\section{Задача}
+Доказать, что алгоритм сортировки пузырьком асимптотически работает $O(n^2)$.
+
+\newpage
+\section{Задача}
+Допишите классы так, чтобы данный код компилировался и на выходе было то, что требуется. Писать код можно только там где указано. Подсказка: длина входных данных ограничена --- можно воспользоваться просто массивом в качестве хранения данных.
+\begin{verbatim}
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+class stack{
+public:
+    st();
+    void push(int data);
+    int pop();
+private:
+    //YOUR CODE HERE
+};
+
+stack::st(){
+//YOUR CODE HERE
+}
+
+void stack::push(int val){
+//YOUR CODE HERE
+}
+
+int stack::pop(){
+//YOUR CODE HERE
+}
+
+int main(){
+    stack st;
+    for(int i = 0; i < 5; i++){
+    	st.push(i);
+    }
+    for(int i; i < 5; i++){
+    	printf("%d\n", st.pop());
+    }
+    //На экране должны появиться числа от 5 до 1 
+}
+\end{verbatim}
+\end{document} 
