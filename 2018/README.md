@@ -7,7 +7,7 @@
 * [Задача 6](http://acmp.ru/index.asp?main=task&id_task=297)
 * [Задача 7](http://acmp.ru/index.asp?main=task&id_task=14)
 * [Задача 8](http://acmp.ru/index.asp?main=task&id_task=340)
-* [Задача 9](http://acmp.ru/index.asp?main=task&id_task=248)
+* [Задача 9](http://acmp.ru/index.asp?main=task&id_task=263)
 * [Задача 10](http://acmp.ru/index.asp?main=task&id_task=119)
 
 Список задач на семинар 2:
